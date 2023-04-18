@@ -126,6 +126,19 @@ def year_board(filename, date_str):
     print('year balance : {:>+1.2f}'.format(balance_full))
 
 
+def run(cmd_args):
+
+    if cmd_args['board'] == "week":
+        week_board(cmd_args['path'], cmd_args['date'])
+        return 0
+    elif cmd_args['board'] == "year":
+        year_board(cmd_args['path'], cmd_args['date'])
+        return 0
+    else:
+        print("unknown board type, aborting.")
+    return 127
+
+
 def main():
 
     parser = argparse.ArgumentParser(description="natt is not a time tracker")
@@ -135,11 +148,8 @@ def main():
     parser.add_argument("--date", "-d", type=str, default=datetime.datetime.today().strftime('%Y-%m-%d'))
     parser.add_argument("--version", action="version", version=__version__)
 
-    cmd_args = vars(parser.parse_args())
+    return run(vars(parser.parse_args()))
 
-    if cmd_args['board'] == "week":
-        week_board(cmd_args['path'], cmd_args['date'])
-    elif cmd_args['board'] == "year":
-        year_board(cmd_args['path'], cmd_args['date'])
-    else:
-        print("unknown board type, aborting.")
+
+if __name__ == '__main__':
+    main()
