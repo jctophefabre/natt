@@ -16,7 +16,7 @@ def version():
 setup(
     name='natt',
     version=version(),
-    description='natt',
+    description='natt is Not Another Time Tracker',
     long_description=readme(),
     author='Jean-Christophe Fabre',
     author_email='jean-christophe.fabre@inrae.fr',
@@ -28,7 +28,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'natt = natt.__main__:main'
+            'natt=natt.__main__:main'
         ]
     },
     install_requires=[
